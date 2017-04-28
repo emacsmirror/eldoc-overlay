@@ -18,6 +18,10 @@
   (let ((map (make-sparse-keymap)))
     map))
 
+(defcustom eldoc-overlay-mode-function 'inline-docs
+  "Specify the function for displaying eldoc.
+Two functions currently supported: `inline-docs', and `quick-peek-show'.")
+
 ;;;###autoload
 (define-minor-mode eldoc-overlay-mode
   "Minor mode for displaying eldoc with contextual documentation overlay."
@@ -26,7 +30,7 @@
   :keymap eldoc-overlay-mode-map
   :global t
   (if eldoc-overlay-mode
-      (setq eldoc-message-function #'inline-docs)
+      (setq eldoc-message-function eldoc-overlay-mode-function)
     (setq eldoc-message-function #'eldoc-minibuffer-message)
     )
   )
