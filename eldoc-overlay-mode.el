@@ -4,7 +4,7 @@
 ;; Keywords: eldoc overlay
 ;; URL: https://github.com/stardiviner/eldoc-overlay-mode
 ;; Created: 14th Jan 2017
-;; Version: 0.0.1
+;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24.3") (inline-docs "1.0.1") (quick-peek "1.0"))
 
 ;;; Commentary:
