@@ -29,6 +29,8 @@ Two libraries currently supported: `inline-docs', and `quick-peek'.")
 Two functions currently supported: `inline-docs', and `quick-peek'.")
 
 (defun eldoc-overlay-disable-in-org-mode ()
+(defun eldoc-overlay-disable ()
+  "Disable `eldoc-overlay-mode' in some modes."
   (setq-local eldoc-message-function #'eldoc-minibuffer-message))
 
 (defun eldoc-overlay-quick-peek (format-string &rest args)
@@ -50,7 +52,7 @@ Two functions currently supported: `inline-docs', and `quick-peek'.")
       (progn
         (setq eldoc-message-function eldoc-overlay-function)
         (add-hook 'post-command-hook 'quick-peek-hide)
-        (add-hook 'org-mode-hook #'eldoc-overlay-disable-in-org-mode))
+        (add-hook 'org-mode-hook #'eldoc-overlay-disable))
     (setq eldoc-message-function #'eldoc-minibuffer-message)
     )
   )
