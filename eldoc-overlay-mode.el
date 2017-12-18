@@ -45,6 +45,7 @@ Two functions currently supported: `inline-docs', and `quick-peek'.")
   :lighter " ElDoc overlay"
   :keymap eldoc-overlay-mode-map
   :global t
+  :require 'eldoc-overlay-mode
   (if eldoc-overlay-mode
       (progn
         (setq eldoc-message-function eldoc-overlay-function)
