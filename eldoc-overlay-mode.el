@@ -18,9 +18,16 @@
   (let ((map (make-sparse-keymap)))
     map))
 
+(defgroup eldoc-overlay nil
+  "eldoc-over-mode."
+  :prefix "eldoc-overlay-"
+  :group 'eldoc)
+
 (defcustom eldoc-overlay-library #'quick-peek
   "Specify the library for displaying eldoc.
-Two libraries currently supported: `inline-docs', and `quick-peek'.")
+Two libraries currently supported: `inline-docs', and `quick-peek'."
+  :type 'function
+  :group 'eldoc-overlay)
 
 (defvar eldoc-overlay-function (pcase eldoc-overlay-library
                                  (`inline-docs 'inline-docs)
@@ -28,17 +35,26 @@ Two libraries currently supported: `inline-docs', and `quick-peek'.")
   "Specify the function for displaying eldoc.
 Two functions currently supported: `inline-docs', and `quick-peek'.")
 
-(defun eldoc-overlay-disable-in-org-mode ()
+(defcustom eldoc-overlay-disable-in-minibuffer nil
+  "Disable eldoc-overlay-mode in minibuffer."
+  :type 'boolean
+  :group 'eldoc-overlay)
+
 (defun eldoc-overlay-disable ()
   "Disable `eldoc-overlay-mode' in some modes."
   (setq-local eldoc-message-function #'eldoc-minibuffer-message))
 
 (defun eldoc-overlay-quick-peek (format-string &rest args)
-  (when format-string
-    (quick-peek-show
-     (apply 'format format-string args)
-     (point)
-     1)))
+  "The real function to show FORMAT-STRING and ARGS of `eldoc-over-mode'."
+  (if (and eldoc-overlay-disable-in-minibuffer
+           (minibufferp))
+      (eldoc-overlay-disable)
+    ;; (eldoc-minibuffer-message format-string args)
+    (when format-string
+      (quick-peek-show
+       (apply 'format format-string args)
+       (point)
+       1))))
 
 ;;;###autoload
 (define-minor-mode eldoc-overlay-mode
