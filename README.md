@@ -9,7 +9,7 @@ answered
 
 # Screenshots
 
-![eldoc-overlay-mode screenshot](eldoc-overlay-mode.png)
+![eldoc-overlay screenshot](eldoc-overlay.png)
 
 # break backward compatible upgrading changes
 

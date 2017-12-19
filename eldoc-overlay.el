@@ -1,10 +1,10 @@
-;;; eldoc-overlay-mode.el --- Display eldoc with contextual documentation overlay.
+;;; eldoc-overlay.el --- Display eldoc with contextual documentation overlay.
 
 ;; Author: stardiviner <numbchild@gmail.com>
 ;; Author: Robert Weiner <rsw@gnu.org>
 ;; Maintainer: stardiviner <numbchild@gmail.com>
 ;; Keywords: documentation, eldoc, overlay
-;; URL: https://github.com/stardiviner/eldoc-overlay-mode
+;; URL: https://github.com/stardiviner/eldoc-overlay
 ;; Created:  14th Jan 2017
 ;; Modified: 18th Dec 2017
 ;; Version: 0.1.1
@@ -171,6 +171,6 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
 
 ;;; ----------------------------------------------------------------------------
 
-(provide 'eldoc-overlay-mode)
+(provide 'eldoc-overlay)
 
-;;; eldoc-overlay-mode.el ends here
+;;; eldoc-overlay.el ends here
