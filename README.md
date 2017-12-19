@@ -11,4 +11,7 @@ answered
 
 ![eldoc-overlay-mode screenshot](eldoc-overlay-mode.png)
 
+# break backward compatible upgrading changes
 
+Please reference here: https://github.com/stardiviner/eldoc-overlay/pull/3
+Sorry for lazy, (I'm kind of busy recently)
