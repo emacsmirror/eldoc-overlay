@@ -35,4 +35,4 @@ of this [question](https://emacs.stackexchange.com/questions/29256/display-eldoc
 
 # Screenshots
 
-![eldoc-overlay-mode screenshot](eldoc-overlay-mode.png)
+![eldoc-overlay screenshot](eldoc-overlay.png)
