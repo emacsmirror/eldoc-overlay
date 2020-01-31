@@ -36,9 +36,6 @@
 ;; in this case.  Set the option `eldoc-overlay-in-minibuffer-flag' non-nil if you want
 ;; to enable overlay use in the minibuffer.
 ;;
-;; The key used to toggle the mode can be customized by setting the `eldoc-overlay-key'
-;; option.
-;;
 ;; Finally, see the documentation for `eldoc-overlay-backend' if you want to try
 ;; a different overlay display package backend.
 
@@ -59,14 +56,6 @@ When nil and in the minibuffer, if standard `eldoc-mode' is
 enabled, it displays function signatures in the modeline."
   :type 'boolean
   :group 'eldoc-overlay)
-
-(defcustom eldoc-overlay-key (kbd "C-x C-h")
-  "Key to toggle eldoc overlay mode."
-  :type 'kbd
-  :group 'eldoc-overlay
-  :set (lambda (option value)
-         (set option value)
-         (global-set-key value #'eldoc-overlay-toggle)))
 
 
 ;; Variables
@@ -98,51 +87,6 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
          (`quick-peek 'eldoc-overlay-quick-peek))
 	     (funcall eldoc-documentation-function)))))
 
-;; Commands
-(defun eldoc-overlay-enable ()
-  "Enable `eldoc-overlay-mode' minor mode."
-  (interactive)
-  (eldoc-overlay-mode 1))
-
-(defun eldoc-overlay-disable ()
-  "Disable `eldoc-overlay-mode' minor mode."
-  (interactive)
-  (eldoc-overlay-mode 0))
-
-(defun global-eldoc-overlay-enable ()
-  "Globally enable `eldoc-overlay-mode' minor mode."
-  (interactive)
-  (global-eldoc-overlay-mode 1))
-
-(defun global-eldoc-overlay-disable ()
-  "Globally disable `eldoc-overlay-mode' minor mode."
-  (interactive)
-  (global-eldoc-overlay-mode 0))
-
-;;;###autoload
-(defun global-eldoc-overlay-toggle ()
-  "Globally toggle display of eldoc-overlay."
-  (if global-eldoc-overlay-mode
-      (progn (global-eldoc-overlay-disable)
-             (message "Globally disabled eldoc-overlay minor mode"))
-    (message "Globally enabled eldoc-overlay minor mode")
-    (global-eldoc-overlay-enable)
-    (eldoc-message (funcall eldoc-documentation-function))))
-
-;;;###autoload
-(defun eldoc-overlay-toggle (global-flag)
-  "Toggle display of eldoc-overlay in this buffer or with prefix arg GLOBAL-FLAG, globally."
-  (interactive "P")
-  (cond
-   (global-flag
-    (global-eldoc-overlay-toggle))
-   (eldoc-overlay-mode
-    (eldoc-overlay-disable)
-    (message "Disabled eldoc-overlay minor mode in the current buffer"))
-   (t (message "Enabled eldoc-overlay minor mode in the current buffer")
-      (eldoc-overlay-enable)
-      (eldoc-message (funcall eldoc-documentation-function)))))
-
 ;;;###autoload
 (define-minor-mode eldoc-overlay-mode
   "Minor mode for displaying eldoc contextual documentation using a text overlay."
@@ -165,12 +109,6 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
         (remove-hook 'post-command-hook #'quick-peek-hide)))
     (eldoc-mode 0)
     (setq eldoc-message-function #'eldoc-minibuffer-message)))
-
-;;;###autoload
-(define-globalized-minor-mode global-eldoc-overlay-mode eldoc-overlay-mode eldoc-overlay-enable
-  :group 'eldoc-overlay
-  :init-value t)
-
 
 ;;; ----------------------------------------------------------------------------
 
