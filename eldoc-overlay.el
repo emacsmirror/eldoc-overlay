@@ -148,7 +148,8 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   "Minor mode for displaying eldoc contextual documentation using a text overlay."
   :require 'eldoc-overlay-mode
   :group 'eldoc-overlay
-  :init-value t
+  :init-value nil
+  :global t
   :lighter " ElDocOver"
   (if eldoc-overlay-mode
       (progn
