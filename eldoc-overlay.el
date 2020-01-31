@@ -97,17 +97,14 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   :lighter " ElDocOver"
   (if eldoc-overlay-mode
       (progn
-        (when (eq eldoc-overlay-backend 'quick-peek)
-          (add-hook 'post-command-hook #'quick-peek-hide))
-        (add-hook 'org-mode-hook #'eldoc-overlay-disable)
+        (eldoc-mode 1)
         (setq eldoc-message-function #'eldoc-overlay-display)
-        (eldoc-mode 1))
-    (when (eq eldoc-overlay-backend 'quick-peek)
-      (quick-peek-hide)
-      ;; Remove hook when no buffers have any peek overlays
-      (unless (delq nil (mapcar (lambda (buf) (buffer-local-value 'quick-peek--overlays buf)) (buffer-list)))
-        (remove-hook 'post-command-hook #'quick-peek-hide)))
-    (eldoc-mode 0)
+        (when (eq eldoc-overlay-backend 'quick-peek)
+          (add-hook 'post-command-hook #'quick-peek-hide)))
+    (quick-peek-hide)
+    ;; Remove hook when no buffers have any peek overlays
+    (unless (delq nil (mapcar (lambda (buf) (buffer-local-value 'quick-peek--overlays buf)) (buffer-list)))
+      (remove-hook 'post-command-hook #'quick-peek-hide))
     (setq eldoc-message-function #'eldoc-minibuffer-message)))
 
 ;;; ----------------------------------------------------------------------------
