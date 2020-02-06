@@ -18,19 +18,7 @@
 ;; This package modifies Eldoc to display this documentation inline
 ;; using a buffer text overlay.
 ;;
-;;  `eldoc-overlay-mode' is a per-buffer minor mode.
-;;    A call to `eldoc-overlay-enable' turns it on.
-;;    A call to `eldoc-overlay-disable' turns it off
-;;
-;;    {C-x C-h} interactively calls `eldoc-overlay-toggle' and tells
-;;    you the mode's new state.
-;;
-;;  `global-eldoc-overlay-mode' can be used to toggle this for all buffers.
-;;    A call to `global-eldoc-overlay-enable' turns it on.
-;;    A call to `global-eldoc-overlay-disable' turns it off
-;;
-;;    {C-u C-x C-h} interactively calls `global-eldoc-overlay-toggle' and tells
-;;    you the mode's new state.
+;;  `eldoc-overlay-mode' is a per-buffer local minor mode.
 ;;
 ;; By default, the overlay is not used in the minibuffer, eldoc is shown in the modeline
 ;; in this case.  Set the option `eldoc-overlay-enable-in-minibuffer' non-nil if you want
