@@ -33,7 +33,7 @@
 ;;    you the mode's new state.
 ;;
 ;; By default, the overlay is not used in the minibuffer, eldoc is shown in the modeline
-;; in this case.  Set the option `eldoc-overlay-in-minibuffer-flag' non-nil if you want
+;; in this case.  Set the option `eldoc-overlay-enable-in-minibuffer' non-nil if you want
 ;; to enable overlay use in the minibuffer.
 ;;
 ;; Finally, see the documentation for `eldoc-overlay-backend' if you want to try
@@ -50,7 +50,7 @@
   :prefix "eldoc-overlay-"
   :group 'eldoc)
 
-(defcustom eldoc-overlay-in-minibuffer-flag nil
+(defcustom eldoc-overlay-enable-in-minibuffer nil
   "Non-nil (default: nil) means enable `eldoc-overlay-mode' in the minibuffer.
 When nil and in the minibuffer, if standard `eldoc-mode' is
 enabled, it displays function signatures in the modeline."
@@ -80,7 +80,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   "Display eldoc for the minibuffer when there or call the function indexed by `eldoc-overlay-backend'."
   (unless (or (company-tooltip-visible-p)
               (frame-visible-p (company-box--get-frame)))
-    (if (and (minibufferp) (not eldoc-overlay-in-minibuffer-flag))
+    (if (and (minibufferp) (not eldoc-overlay-enable-in-minibuffer))
         (apply #'eldoc-minibuffer-message format-string args)
       (funcall
        (pcase eldoc-overlay-backend
