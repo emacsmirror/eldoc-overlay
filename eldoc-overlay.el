@@ -94,7 +94,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   :require 'eldoc-overlay-mode
   :group 'eldoc-overlay
   :init-value nil
-  :global t
+  :global nil
   :lighter " ElDoc/overlay"
   (if eldoc-overlay-mode
       (progn
@@ -107,6 +107,9 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
     (unless (delq nil (mapcar (lambda (buf) (buffer-local-value 'quick-peek--overlays buf)) (buffer-list)))
       (remove-hook 'post-command-hook #'quick-peek-hide))
     (setq eldoc-message-function #'eldoc-minibuffer-message)))
+
+;;;###autoload
+(add-hook 'eldoc-mode-hook #'eldoc-overlay-mode)
 
 ;;; ----------------------------------------------------------------------------
 
