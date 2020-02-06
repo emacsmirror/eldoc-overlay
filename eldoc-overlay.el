@@ -94,7 +94,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   :group 'eldoc-overlay
   :init-value nil
   :global t
-  :lighter " ElDocOver"
+  :lighter " ElDoc/overlay"
   (if eldoc-overlay-mode
       (progn
         (eldoc-mode 1)
