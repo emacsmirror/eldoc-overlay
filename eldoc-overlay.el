@@ -71,11 +71,11 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
                 (frame-visible-p (company-box--get-frame))))
     (if (and (minibufferp) (not eldoc-overlay-enable-in-minibuffer))
         (apply #'eldoc-minibuffer-message format-string args)
-      (funcall
-       (pcase eldoc-overlay-backend
-	       (`inline-docs 'eldoc-overlay-inline-docs)
-         (`quick-peek 'eldoc-overlay-quick-peek))
-	     (funcall eldoc-documentation-function)))))
+      (funcall (pcase eldoc-overlay-backend
+                 (`inline-docs 'eldoc-overlay-inline-docs)
+                 (`quick-peek 'eldoc-overlay-quick-peek))
+               (funcall eldoc-documentation-function)))))
+
 (defun eldoc-overlay-enable ()
   (unless eldoc-mode
     (eldoc-mode 1)) ; make sure `eldoc-mode' enabled.
