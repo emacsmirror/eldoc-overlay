@@ -77,8 +77,6 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
                (funcall eldoc-documentation-function)))))
 
 (defun eldoc-overlay-enable ()
-  (unless eldoc-mode
-    (eldoc-mode 1)) ; make sure `eldoc-mode' enabled.
   (setq-local eldoc-message-function #'eldoc-overlay-display)
   (when (eq eldoc-overlay-backend 'quick-peek)
     (add-hook 'post-command-hook #'quick-peek-hide)))
@@ -105,9 +103,6 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   (if eldoc-overlay-mode
       (eldoc-overlay-enable)
     (eldoc-overlay-disable)))
-
-;;;###autoload
-(add-hook 'eldoc-mode-hook #'eldoc-overlay-mode)
 
 ;;; ----------------------------------------------------------------------------
 

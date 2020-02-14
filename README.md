@@ -31,8 +31,7 @@ option.
 ```emacs-lisp
 (use-package eldoc-overlay
   :ensure t
-  :config
-  (global-eldoc-overlay-mode 1))
+  :hook (eldoc-mode . eldoc-overlay-mode))
 ```
 
 # Usage
