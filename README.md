@@ -1,3 +1,7 @@
+# Screenshots
+
+![eldoc-overlay screenshot](eldoc-overlay.png)
+
 # eldoc-overlay
 
 Eldoc displays the function signature of the closest function call
@@ -31,7 +35,7 @@ option.
 ```emacs-lisp
 (use-package eldoc-overlay
   :ensure t
-  :init (eldoc-overlay-mode))
+  :init (eldoc-overlay-mode 1))
 ```
 
 # Usage
@@ -73,7 +77,3 @@ different overlay display package backend.
 
 This source code originally came from an answer to [justbur](https://emacs.stackexchange.com/users/14114/justbur)
 of this [question](https://emacs.stackexchange.com/questions/29256/display-eldoc-help-info-behind-point).
-
-# Screenshots
-
-![eldoc-overlay screenshot](eldoc-overlay.png)
