@@ -1,6 +1,6 @@
 # Screenshots
 
-![eldoc-overlay screenshot](eldoc-overlay screenshot.png)
+![screenshot](screenshot.png)
 
 # eldoc-overlay
 
