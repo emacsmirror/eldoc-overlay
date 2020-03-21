@@ -98,11 +98,14 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   :require 'eldoc-overlay-mode
   :group 'eldoc-overlay
   :init-value nil
-  :global t
+  :global nil
   :lighter " ElDoc/overlay"
   (if eldoc-overlay-mode
       (eldoc-overlay-enable)
     (eldoc-overlay-disable)))
+
+(define-globalized-minor-mode global-eldoc-overlay-mode
+  eldoc-overlay-mode eldoc-overlay-mode)
 
 ;;; ----------------------------------------------------------------------------
 
