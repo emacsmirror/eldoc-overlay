@@ -104,6 +104,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
       (eldoc-overlay-enable)
     (eldoc-overlay-disable)))
 
+;;;###autoload
 (define-globalized-minor-mode global-eldoc-overlay-mode
   eldoc-overlay-mode eldoc-overlay-mode)
 
