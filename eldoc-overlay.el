@@ -74,7 +74,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
       (funcall (pcase eldoc-overlay-backend
                  (`inline-docs 'eldoc-overlay-inline-docs)
                  (`quick-peek 'eldoc-overlay-quick-peek))
-               (funcall eldoc-documentation-function)))))
+               (apply #'format-message format-string args)))))
 
 (defun eldoc-overlay-enable ()
   (setq-local eldoc-message-function #'eldoc-overlay-display)
