@@ -89,7 +89,7 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
      (unless (delq nil (mapcar (lambda (buf) (buffer-local-value 'quick-peek--overlays buf)) (buffer-list)))
        (remove-hook 'post-command-hook #'quick-peek-hide)))
     ('inline-docs
-     ))
+     (inline-docs--clear-overlay)))
   (setq-local eldoc-message-function #'eldoc-minibuffer-message))
 
 ;;;###autoload
