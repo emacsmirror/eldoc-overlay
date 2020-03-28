@@ -68,7 +68,8 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
   "Display eldoc for the minibuffer when there or call the function indexed by `eldoc-overlay-backend'."
   (unless (or (company-tooltip-visible-p)
               (when (and (featurep 'company-box) (company-box--get-frame))
-                (frame-visible-p (company-box--get-frame))))
+                (frame-visible-p (company-box--get-frame)))
+              (not format-string))
     (if (and (minibufferp) (not eldoc-overlay-enable-in-minibuffer))
         (apply #'eldoc-minibuffer-message format-string args)
       (funcall (pcase eldoc-overlay-backend
