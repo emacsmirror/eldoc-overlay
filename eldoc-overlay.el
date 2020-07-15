@@ -45,6 +45,8 @@ enabled, it displays function signatures in the modeline."
   :type 'boolean
   :group 'eldoc-overlay)
 
+(defvar eldoc-overlay-delay nil
+  "A timer delay with `sleep-for' for eldoc-overlay display.")
 
 ;; Variables
 (defvar eldoc-overlay-backend 'quick-peek
@@ -72,6 +74,8 @@ Two backends are supported: `inline-docs' and `quick-peek'.")
               (not format-string))
     (if (and (minibufferp) (not eldoc-overlay-enable-in-minibuffer))
         (apply #'eldoc-minibuffer-message format-string args)
+      (when (numberp eldoc-overlay-delay)
+        (sleep-for eldoc-overlay-delay))
       (funcall (pcase eldoc-overlay-backend
                  (`inline-docs 'eldoc-overlay-inline-docs)
                  (`quick-peek 'eldoc-overlay-quick-peek))
