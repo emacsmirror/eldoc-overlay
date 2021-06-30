@@ -49,9 +49,11 @@ enabled, it displays function signatures in the modeline."
   "A timer delay with `sleep-for' for eldoc-overlay display.")
 
 ;; Variables
-(defvar eldoc-overlay-backend 'quick-peek
+(defcustom eldoc-overlay-backend 'quick-peek
   "The backend library that displays eldoc overlays.
-Two backends are supported: `inline-docs' and `quick-peek'.")
+Two backends are supported: `inline-docs' and `quick-peek'."
+  :type 'function
+  :safe #'functionp)
 
 ;; Functions
 (defun eldoc-overlay-inline-docs (format-string &rest args)
